@@ -1,0 +1,197 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Kraut und Rueben API",
+    "description": "This is a REST API application made with Express. All the existing methods/functions are able to test and have live support."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333",
+      "description": "Development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Customer",
+      "description": "Operations related to the customer"
+    },
+    {
+      "name": "Recipe",
+      "description": "Operations related to the recipes"
+    },
+    {
+      "name": "Ingredient",
+      "description": "Operations related to the ingredients"
+    },
+    {
+      "name": "Supplier",
+      "description": "Operations related to the supplier"
+    }
+  ],
+  "paths": {
+    "/customer": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Retrieve a list of all the customers in our database",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unable to get customers"
+          }
+        }
+      }
+    },
+    "/customer/{customerid}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Retrieve a single Kraut und Rueben costumer.",
+        "parameters": [
+          {
+            "name": "customerid",
+            "in": "path",
+            "description": "id of the specific customer",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid customer Nr supplied"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Delete a specific Kraut und Rueben costumer.",
+        "parameters": [
+          {
+            "name": "customerid",
+            "in": "path",
+            "description": "id of the specific customer",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid customer Nr supplied"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "customernr": {
+            "type": "integer",
+            "example": 1
+          },
+          "firstname": {
+            "type": "string",
+            "example": "Jack"
+          },
+          "familyname": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "phone": {
+            "type": "integer",
+            "example": 5551234
+          },
+          "birthday": {
+            "type": "string",
+            "example": "1975-09-22T00:00:00.000Z"
+          },
+          "email": {
+            "type": "string",
+            "example": "alice@example.com"
+          }
+        },
+        "xml": {
+          "name": "customer"
+        }
+      },
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "customernr": {
+            "type": "integer",
+            "example": 1
+          },
+          "firstname": {
+            "type": "string",
+            "example": "Jack"
+          },
+          "familyname": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "phone": {
+            "type": "integer",
+            "example": 5551234
+          },
+          "birthday": {
+            "type": "string",
+            "example": "1975-09-22T00:00:00.000Z"
+          },
+          "email": {
+            "type": "string",
+            "example": "alice@example.com"
+          }
+        },
+        "xml": {
+          "name": "customer"
+        }
+      }
+    }
+  }
+}
